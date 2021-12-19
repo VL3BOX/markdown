@@ -1,6 +1,6 @@
 {
-  "name": "mavon-editor",
-  "version": "2.10.4",
+  "name": "@jx3box/markdown",
+  "version": "0.0.1",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hinesboy/mavonEditor.git"
+    "url": "git+https://github.com/JX3BOX/markdown.git"
   },
   "keywords": [
     "javascript",
@@ -29,12 +29,12 @@
     "mavon-editor.d.ts",
     "src"
   ],
-  "author": "hinesboy",
+  "author": "JX3BOX",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hinesboy/mavonEditor/issues"
+    "url": "https://github.com/JX3BOX/markdown/issues"
   },
-  "homepage": "https://github.com/hinesboy/mavonEditor#readme",
+  "homepage": "https://github.com/JX3BOX/markdown#readme",
   "dependencies": {
     "xss": "^1.0.6"
   },
