@@ -363,6 +363,9 @@ export default {
             textarea_selectionEnd: 0,
             textarea_selectionEnds: [0],
             _xssHandler: null,
+
+            // 导航内容
+            navigation_render : ''
         };
     },
     created() {
@@ -630,7 +633,6 @@ export default {
         // 工具栏插入内容
         insertText(obj, { prefix, subfix, str, type }) {
             // if (this.s_preview_switch) {
-
             insertTextAtCaret(obj, { prefix, subfix, str, type }, this);
         },
         insertTab() {
@@ -710,7 +712,7 @@ export default {
                     if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
                 }
                 // 改变标题导航
-                if ($vm.s_navigation) getNavigation($vm, false);
+                getNavigation($vm, false);
                 // v-model 语法糖
                 $vm.$emit("input", $vm.d_value);
                 // 塞入编辑记录数组

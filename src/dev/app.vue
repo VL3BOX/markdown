@@ -34,26 +34,11 @@
                     </select>
                 </div>
             </div>
-            <mavon-editor
-                ref="md"
-                v-model="help1"
-
-                :editable="true"
-                :navigation="false"
-
-                @change="change"
-
-                :imageFilter="image_filter"
-                @imgAdd="$imgAdd"
-                
-                class="item-editor"
-            >
+            <mavon-editor ref="md" v-model="help1" :editable="true" :navigation="false" @change="change" :imageFilter="image_filter" @imgAdd="$imgAdd" class="item-editor">
                 <!-- <template slot="left-toolbar-before">
                     左工具栏前
                 </template> -->
-                <template slot="left-toolbar-after">
-                    左工具栏后
-                </template>
+                <template slot="left-toolbar-after"> 左工具栏后 </template>
 
                 <!-- <template slot="right-toolbar-before">
                     右工具栏前
@@ -183,6 +168,8 @@ export default {
 
         }
     },
+    computed : {
+    },
     created () {
         var $vm = this;
         this.initLanguage();
@@ -263,7 +250,7 @@ export default {
             alert('save two')
         },
         change (val, render) {
-            console.log(val)
+            let nav = this.$refs.md
         },
         opchange (event) {
             this.d_language = event.target.value;
@@ -272,6 +259,7 @@ export default {
             this.d_words = CONFIG[`words_${this.d_language}`]
             this.help1 = CONFIG[`help_${this.d_language}`]
             this.help2 = CONFIG[`help_${this.d_language}`]
+
         },
         $subfieldtoggle(flag , value) {
             console.log('sufield toggle' + flag)
