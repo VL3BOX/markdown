@@ -30,39 +30,27 @@
                 <div class="switch-code-style">
                     <span>code style:</span>
                     <select v-model="codeStyle">
-                        <option v-for="(val, key) in styles" :value="key">{{ key }}</option>
+                        <option v-for="(val, key) in styles" :value="key" :key="key">{{ key }}</option>
                     </select>
                 </div>
             </div>
             <mavon-editor
                 ref="md"
                 v-model="help1"
-                :editable="editable"
-                
-                placeholder="write your story.."
 
-                :toolbarsFlag="toolbarsFlag"
-                
+                :editable="true"
+                :navigation="false"
+
+                placeholder="write your story.."
+                :autofocus="false"
+                :xssOptions="options.xss"
+                :toolbars="options.toolbars"
+                :imageFilter="image_filter"
                 @change="change"
-                @save="saveone"
-                :ishljs="true"
-                
-                
-                :autofocus="autofocus"
-                :shortCut="true"
-                :externalLink="external_link"
                 @imgAdd="$imgAdd"
                 @imgDel="$imgDel"
                 @subfieldtoggle="$subfieldtoggle"
                 @previewtoggle="$previewtoggle"
-                :imageFilter="image_filter"
-                
-                :codeStyle="codeStyle"
-                
-
-                :boxShadow="false"
-                preview-background="#ffffff"
-
                 class="item-editor"
             >
                 <!-- <template slot="left-toolbar-before">
@@ -106,47 +94,29 @@ export default {
     name: 'app',
     data () {
         return {
-            d_language: 'zh-CN',
-            help1: '',
-            help2: '',
-            d_words: {},
-            screen_phone: false,
-            toolbars: {
-                underline: true, // 下划线
-                strikethrough: true, // 中划线
-                alignCenter: true, // 中划线
-                undo: true,
-                save: true,
-                fullscreen: true, // 全屏编辑
-                navigation: true,
-                preview: true,
-                subfield: false
+
+            options : {
+                xss : {},
+                toolbars: {
+                    underline: true, // 下划线
+                    strikethrough: true, // 中划线
+                    alignCenter: true, // 中划线
+                    undo: true,
+                    save: true,
+                    fullscreen: true, // 全屏编辑
+                    navigation: true,
+                    preview: true,
+                    subfield: false
+                },
             },
-            autofocus: true,
-            subfield: true,
-            editable: true,
-            toolbarsFlag: true,
+
+
+
+
+
+
+            // =============
             img_file: {},
-            external_link: {
-                markdown_css: function() {
-                    return '/markdown/github-markdown.min.css';
-                },
-                hljs_js: function() {
-                    return '/highlightjs/highlight.min.js';
-                },
-                hljs_css: function(css) {
-                    return '/highlightjs/styles/' + css + '.min.css';
-                },
-                hljs_lang: function(lang) {
-                    return '/highlightjs/languages/' + lang + '.min.js';
-                },
-                katex_css: function() {
-                    return '/katex/katex.min.css';
-                },
-                katex_js: function() {
-                    return '/katex/katex.min.js';
-                }
-            },
             toolbar_settings: {
                 undo: true, // 上一步
                 redo: true, // 下一步
@@ -181,8 +151,41 @@ export default {
                 console.log(file);
             },
             imgName: '',
+            styles,
+
             codeStyle: "github",
-            styles
+            autofocus: true,
+            subfield: true,
+            editable: true,
+            toolbarsFlag: true,
+            img_file: {},
+            external_link: {
+                markdown_css: function() {
+                    return '/markdown/github-markdown.min.css';
+                },
+                hljs_js: function() {
+                    return '/highlightjs/highlight.min.js';
+                },
+                hljs_css: function(css) {
+                    return '/highlightjs/styles/' + css + '.min.css';
+                },
+                hljs_lang: function(lang) {
+                    return '/highlightjs/languages/' + lang + '.min.js';
+                },
+                katex_css: function() {
+                    return '/katex/katex.min.css';
+                },
+                katex_js: function() {
+                    return '/katex/katex.min.js';
+                }
+            },
+            d_language: 'zh-CN',
+            help1: '',
+            help2: '',
+            d_words: {},
+            screen_phone: false,
+
+
         }
     },
     created () {

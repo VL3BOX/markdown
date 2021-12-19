@@ -73,7 +73,6 @@
                     v-show="!s_html_code"
                     :class="{ 'scroll-style': s_scrollStyle, 'scroll-style-border-radius': s_scrollStyle }"
                     class="v-show-content"
-                    :style="{ 'background-color': previewBackground }"
                 ></div>
                 <div
                     v-show="s_html_code"
@@ -189,7 +188,7 @@ export default {
             default: "#ffffff",
         },
         editorBackground: {
-            // TODO: 编辑栏背景色
+            // 编辑栏背景色
             type: String,
             default: "#ffffff",
         },
@@ -342,22 +341,22 @@ export default {
                     return `${_cdnRoot}markdown/github-markdown.min.css`;
                 },
                 hljs_js: function () {
-                    return `${_cdnRoot}markdown/highlight.js-11.3.1/highlight.min.js`;
+                    return `${_cdnRoot}highlight.js-11.3.1/highlight.min.js`;
                 },
                 hljs_lang: function (lang) {
-                    return `${_cdnRoot}markdown/highlight.js-11.3.1/languages/` + lang + ".min.js";
+                    return `${_cdnRoot}highlight.js-11.3.1/languages/` + lang + ".min.js";
                 },
                 hljs_css: function (css) {
                     if (hljsCss[css]) {
-                        return `${_cdnRoot}markdown/highlight.js-11.3.1/styles/` + css + ".min.css";
+                        return `${_cdnRoot}highlight.js-11.3.1/styles/` + css + ".min.css";
                     }
                     return "";
                 },
                 katex_js: function () {
-                    return `${_cdnRoot}markdown/katex/katex.min.js`;
+                    return `${_cdnRoot}katex/katex.min.js`;
                 },
                 katex_css: function () {
-                    return `${_cdnRoot}markdown/katex/katex.min.css`;
+                    return `${_cdnRoot}katex/katex.min.css`;
                 },
             },
             p_external_link: {},
