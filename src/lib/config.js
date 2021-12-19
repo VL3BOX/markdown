@@ -61,19 +61,19 @@ export const CONFIG = {
         'imagelink': true,
         'code': true,
         'table': true,
-        'undo': true,
-        'redo': true,
-        'trash': true,
-        'save': true,
+        'undo': false,
+        'redo': false,
+        'trash': false,
+        'save': false,
         'alignleft': true,
         'aligncenter': true,
         'alignright': true,
-        'navigation': true,
+        'navigation': false,
         'subfield': true,
         'fullscreen': true,
-        'readmodel': true,
+        'readmodel': false,
         'htmlcode': true,
         'help': true,
-        'preview': true
+        'preview': false
     }
 };

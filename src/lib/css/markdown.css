@@ -709,7 +709,8 @@
     overflow-x: auto;
     padding: 0.5em;
     color: #333;
-    background: #f2f3f1
+    /* background: #f2f3f1; */
+    background-color:#f6f8fa;
 }
 
 .markdown-body .hljs-comment, .hljs-quote {

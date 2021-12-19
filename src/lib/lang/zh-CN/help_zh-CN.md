@@ -2,26 +2,43 @@
 
 Markdown 语法简介
 =============
-> [语法详解](http://commonmark.org/help/)
 
-## **目录**
+## 目录
 ```
 @[toc](目录)
 ```
 
-## **粗体**
+## 粗体
 ```
 **粗体**
 __粗体__
 ```
-## *斜体*
+## 斜体
 ```
 *斜体*
 _斜体_
 ```
+## 下划线
+```
+++下划线++
+```
+## 删除线
+```
+~~删除线~~
+```
+## 上标下标
+```
+上角标 x^2^
+下角标 H~2~0
+```
+x^2^  H~2~0
+
+## 标记
+```
+==标记==
+```
 ## 标题
 ```
-# 一级标题 #
 一级标题
 ====
 ## 二级标题 ##
@@ -37,65 +54,50 @@ _斜体_
 ***
 ---
 ```
-****
-## ^上^角~下~标
-```
-上角标 x^2^
-下角标 H~2~0
-```
-## ++下划线++ ~~中划线~~
-```
-++下划线++
-~~中划线~~
-```
-## ==标记==
-```
-==标记==
-```
-## 段落引用
+## 引用
 ```
 > 一级
 >> 二级
 >>> 三级
-...
 ```
-
 ## 列表
 ```
 有序列表
-1.
-2.
-3.
-...
+1. 列表项
+2. 列表项
+3. 列表项
 无序列表
--
--
-...
-```
-
-## 任务列表
-
-- [x] 已完成任务
-- [ ] 未完成任务
-
-```
++ 列表项
++ 列表项
+待办列表
 - [x] 已完成任务
 - [ ] 未完成任务
 ```
-
 ## 链接
 ```
-[链接](www.baidu.com)
-![图片描述](http://www.image.com)
+[JX3BOX](https://www.jx3box.com)
 ```
-## 代码段落
-\``` type
+[JX3BOX](https://www.jx3box.com)
+## 图片
+```
+![JX3BOX](https://img.jx3box.com/image/common/logo.png)
+```
+![JX3BOX](https://img.jx3box.com/image/common/logo.png)
+## 脚注
+```
+见底部脚注[^hello]
+[^hello]: 一个注脚
+```
+见底部脚注[^hello]
+[^hello]: 一个注脚
 
-代码段落
-
-\```
-
-\` 代码块 \`
+## 代码
+> 代码块
+> \```lang
+> code block
+> \```
+> 代码行
+> \`code inline\`
 
 ```c++
 int main()
@@ -103,8 +105,7 @@ int main()
     printf("hello world!");
 }
 ```
-`code`
-## 表格(table)
+## 表格
 ```
 | 标题1 | 标题2 | 标题3 |
 | :--  | :--: | ----: |
@@ -115,17 +116,20 @@ int main()
 | :--  | :--: | ----: |
 | 左对齐 | 居中 | 右对齐 |
 | ---------------------- | ------------- | ----------------- |
-## 脚注(footnote)
-```
-hello[^hello]
-```
 
-见底部脚注[^hello]
-
-[^hello]: 一个注脚
+## 折叠
+```
+<details>
+<summary>点击展开折叠</summary>
+被折叠的文字
+</details>
+```
+<details>
+<summary>点击展开折叠</summary>
+被折叠的文字
+</details>
 
 ## 表情(emoji)
-[参考网站: https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 ```
 :laughing:
 :blush:
@@ -133,17 +137,19 @@ hello[^hello]
 :)
 ...
 ```
-:laughing::blush::smiley::)
+:laughing::blush::smiley::) [更多](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 
 ## $\KaTeX$公式
-
+```
+$x_i + y_i = z_i$ 和 $\sum_{i=1}^n a_i=0$
+$$\sum_{i=1}^n a_i=0$$
+```
 我们可以渲染公式例如：$x_i + y_i = z_i$和$\sum_{i=1}^n a_i=0$
 我们也可以单行渲染
 $$\sum_{i=1}^n a_i=0$$
 具体可参照[katex文档](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[katex支持的函数](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)以及[latex文档](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
-## 布局
-
+## 对齐
 ::: hljs-left
 `::: hljs-left`
 `居左`
@@ -161,43 +167,3 @@ $$\sum_{i=1}^n a_i=0$$
 `居右`
 `:::`
 :::
-
-## 定义
-
-术语一
-
-:   定义一
-
-包含有*行内标记*的术语二
-
-:   定义二
-
-        {一些定义二的文字或代码}
-
-    定义二的第三段
-
-```
-术语一
-
-:   定义一
-
-包含有*行内标记*的术语二
-
-:   定义二
-
-        {一些定义二的文字或代码}
-
-    定义二的第三段
-
-```
-
-## abbr
-*[HTML]: Hyper Text Markup Language
-*[W3C]:  World Wide Web Consortium
-HTML 规范由 W3C 维护
-```
-*[HTML]: Hyper Text Markup Language
-*[W3C]:  World Wide Web Consortium
-HTML 规范由 W3C 维护
-```
-

@@ -1,91 +1,92 @@
-import hljsLangs from '../core/hljs/lang.hljs.js'
-import {
-    loadScript
-} from '../core/extra-function.js'
-import sanitizer from '../core/sanitizer.js'
+import hljsLangs from "../core/hljs/lang.hljs.js";
+import { loadScript } from "../core/extra-function.js";
+import sanitizer from "../core/sanitizer.js";
 
 var markdown_config = {
-    html: true,        // Enable HTML tags in source
-    xhtmlOut: true,        // Use '/' to close single tags (<br />).
-    breaks: true,        // Convert '\n' in paragraphs into <br>
-    langPrefix: 'lang-',  // CSS language prefix for fenced blocks. Can be
-    linkify: false,        // 自动识别url
+    html: true, // Enable HTML tags in source
+    xhtmlOut: true, // Use '/' to close single tags (<br />).
+    breaks: true, // Convert '\n' in paragraphs into <br>
+    langPrefix: "lang-", // CSS language prefix for fenced blocks. Can be
+    linkify: false, // 自动识别url
     typographer: true,
-    quotes: '“”‘’'
-}
+    quotes: "“”‘’",
+};
 
-var MarkdownIt = require('markdown-it');
+var MarkdownIt = require("markdown-it");
 // 表情
-var emoji = require('markdown-it-emoji');
+var emoji = require("markdown-it-emoji");
 // 下标
-var sub = require('markdown-it-sub')
+var sub = require("markdown-it-sub");
 // 上标
-var sup = require('markdown-it-sup')
+var sup = require("markdown-it-sup");
 // <dl/>
-var deflist = require('markdown-it-deflist')
+var deflist = require("markdown-it-deflist");
 // <abbr/>
-var abbr = require('markdown-it-abbr')
+var abbr = require("markdown-it-abbr");
 // footnote
-var footnote = require('markdown-it-footnote')
+var footnote = require("markdown-it-footnote");
 // insert 带有下划线 样式 ++ ++
-var insert = require('markdown-it-ins')
+var insert = require("markdown-it-ins");
 // mark
-var mark = require('markdown-it-mark')
+var mark = require("markdown-it-mark");
 // taskLists
-var taskLists = require('markdown-it-task-lists')
+var taskLists = require("markdown-it-task-lists");
 // container
-var container = require('markdown-it-container')
-//
-var toc = require('markdown-it-toc')
-
-var mihe = require('markdown-it-highlightjs-external');
+var container = require("markdown-it-container");
+// contents
+var toc = require("markdown-it-toc");
+// code highlight
+var mihe = require("markdown-it-highlightjs-external");
 // math katex
-var katex = require('markdown-it-katex-external');
-var miip = require('markdown-it-images-preview');
+var katex = require("markdown-it-katex-external");
+var miip = require("markdown-it-images-preview");
 var missLangs = {};
 var needLangs = [];
 var hljs_opts = {
-    hljs: 'auto',
+    hljs: "auto",
     highlighted: true,
     langCheck: function (lang) {
         if (lang && hljsLangs[lang] && !missLangs[lang]) {
             missLangs[lang] = 1;
-            needLangs.push(hljsLangs[lang])
+            needLangs.push(hljsLangs[lang]);
         }
-    }
+    },
 };
 
 export function initMarkdown() {
     const markdown = new MarkdownIt(markdown_config);
 
     // add target="_blank" to all link
-    var defaultRender = markdown.renderer.rules.link_open || function (tokens, idx, options, env, self) {
-        return self.renderToken(tokens, idx, options);
-    };
+    var defaultRender =
+        markdown.renderer.rules.link_open ||
+        function (tokens, idx, options, env, self) {
+            return self.renderToken(tokens, idx, options);
+        };
     markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-        var hIndex = tokens[idx].attrIndex('href');
-        if (tokens[idx].attrs[hIndex][1].startsWith('#')) return defaultRender(tokens, idx, options, env, self);
+        var hIndex = tokens[idx].attrIndex("href");
+        if (tokens[idx].attrs[hIndex][1].startsWith("#")) return defaultRender(tokens, idx, options, env, self);
         // If you are sure other plugins can't add `target` - drop check below
-        var aIndex = tokens[idx].attrIndex('target');
+        var aIndex = tokens[idx].attrIndex("target");
 
         if (aIndex < 0) {
-            tokens[idx].attrPush(['target', '_blank']); // add new attribute
+            tokens[idx].attrPush(["target", "_blank"]); // add new attribute
         } else {
-            tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+            tokens[idx].attrs[aIndex][1] = "_blank"; // replace value of existing attr
         }
 
         // pass token to default renderer.
         return defaultRender(tokens, idx, options, env, self);
     };
 
-    markdown.use(mihe, hljs_opts)
+    markdown
+        .use(mihe, hljs_opts)
         .use(emoji)
         .use(sup)
         .use(sub)
         .use(container)
-        .use(container, 'hljs-left') /* align left */
-        .use(container, 'hljs-center')/* align center */
-        .use(container, 'hljs-right')/* align right */
+        .use(container, "hljs-left") /* align left */
+        .use(container, "hljs-center") /* align center */
+        .use(container, "hljs-right") /* align right */
         .use(deflist)
         .use(abbr)
         .use(footnote)
@@ -95,7 +96,7 @@ export function initMarkdown() {
         .use(miip)
         .use(katex)
         .use(taskLists)
-        .use(toc)
+        .use(toc);
 
     return markdown;
 }
@@ -103,15 +104,15 @@ export function initMarkdown() {
 export default {
     data() {
         return {
-            markdownIt: null
-        }
+            markdownIt: null,
+        };
     },
     created() {
         this.markdownIt = initMarkdown();
         if (!this.html) {
             this.markdownIt.set({ html: false });
             this.xssOptions = false;
-        } else if (typeof this.xssOptions === 'object') {
+        } else if (typeof this.xssOptions === "object") {
             this.markdownIt.use(sanitizer, this.xssOptions);
         }
     },
@@ -142,13 +143,13 @@ export default {
                         res = this.markdownIt.render(src);
                         func(res);
                     }
-                })
+                });
             }
-        }
+        },
     },
     watch: {
         ishljs: function (val) {
             hljs_opts.highlighted = val;
-        }
-    }
+        },
+    },
 };
