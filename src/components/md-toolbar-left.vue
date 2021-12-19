@@ -242,14 +242,7 @@
             </div>
         </transition>
         <!-- 上传文件 -->
-        <button
-            type="button"
-            v-if="toolbars.file"
-            @click="$clicks('file')"
-            class="op-icon fa fa-mavon-code"
-            aria-hidden="true"
-            :title="`${d_words.tl_file}`"
-        ></button>
+        <slot name="left-toolbar-after" />
 
         <!-- 撤销 -->
         <button type="button" v-if="toolbars.undo" @click="$clicks('undo')" class="op-icon fa fa-mavon-undo" aria-hidden="true" :title="`${d_words.tl_undo} (ctrl+z)`"></button>
@@ -260,7 +253,6 @@
         <!-- 保存 -->
         <button type="button" v-if="toolbars.save" @click="$clicks('save')" class="op-icon fa fa-mavon-floppy-o" aria-hidden="true" :title="`${d_words.tl_save} (ctrl+s)`"></button>
 
-        <slot name="left-toolbar-after" />
     </div>
 </template>
 <script type="text/ecmascript-6">

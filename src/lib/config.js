@@ -74,6 +74,7 @@ export const CONFIG = {
         'readmodel': false,
         'htmlcode': true,
         'help': true,
-        'preview': false
+        'preview': false,
+        // "file":true,
     }
 };

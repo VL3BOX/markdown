@@ -50,19 +50,19 @@
             >
                 <!-- <template slot="left-toolbar-before">
                     左工具栏前
-                </template>
+                </template> -->
                 <template slot="left-toolbar-after">
                     左工具栏后
                 </template>
 
-                <template slot="right-toolbar-before">
+                <!-- <template slot="right-toolbar-before">
                     右工具栏前
-                </template>
-                <template slot="right-toolbar-after">
+                </template> -->
+                <!-- <template slot="right-toolbar-after">
                     右工具栏后
                 </template> -->
             </mavon-editor>
-            <!-- <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left" aria-hidden="true" title="自定义"></button> -->
+            <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left" aria-hidden="true" title="自定义"></button>
         </div>
         <!--自定义-->
         <div v-if="screen_phone" class="item">

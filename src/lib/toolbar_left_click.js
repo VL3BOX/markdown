@@ -60,6 +60,12 @@ function $toolbar_left_codeBlock_click($vm) {
     $vm.insertCodeBlock();
 }
 
+// file
+// function $toolbar_left_file_click($vm){
+//     $vm.insertFiles()
+// }
+
+
 // 直接添加链接
 export const toolbar_left_addlink = (type, text, link, $vm) => {
     let insert_text = {
