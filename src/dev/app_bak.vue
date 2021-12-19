@@ -36,18 +36,15 @@
             </div>
             <mavon-editor
                 ref="md"
-                v-model="help1"
-                :editable="editable"
-                
-                placeholder="write your story.."
-
+                :subfield="subfield"
                 :toolbarsFlag="toolbarsFlag"
-                
+                :editable="editable"
+                :language="d_language"
                 @change="change"
                 @save="saveone"
                 :ishljs="true"
-                
-                
+                class="item-editor"
+                v-model="help1"
                 :autofocus="autofocus"
                 :shortCut="true"
                 :externalLink="external_link"
@@ -56,14 +53,13 @@
                 @subfieldtoggle="$subfieldtoggle"
                 @previewtoggle="$previewtoggle"
                 :imageFilter="image_filter"
-                
+                :boxShadow="true"
+                :scrollStyle="true"
+                :transition="true"
                 :codeStyle="codeStyle"
-                
-
-                :boxShadow="false"
-                preview-background="#ffffff"
-
-                class="item-editor"
+                box-shadow-style="0 2px 12px 0 rgba(0, 0, 0, 0.1)"
+                toolbars-background="#ffffff"
+                preview-background="#fbfbfb"
             >
                 <!-- <template slot="left-toolbar-before">
                     左工具栏前

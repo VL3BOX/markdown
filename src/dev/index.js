@@ -9,12 +9,12 @@
  * @Copyright: 2017
  */
 
-import Vue from 'vue';
-var demo = require('./demo.vue');
-var sMd = require('../index.js');
+import Vue from "vue";
+var demo = require("./demo.vue");
+var sMd = require("../index.js");
 
 Vue.use(sMd);
 var app = new Vue({
-  el: '#main',
-  render: (h) => h(demo)
+    el: "#main",
+    render: (h) => h(demo),
 });

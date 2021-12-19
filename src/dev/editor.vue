@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-import styles from '../lib/core/hljs/lang.hljs.css.js'
+import styles from "../lib/core/hljs/lang.hljs.css.js";
 
 const code = `java
 /**
@@ -33,20 +33,20 @@ public abstract strictfp class L2Char extends L2Object {
 }`;
 
 module.exports = {
-    name: 'editor',
+    name: "editor",
     data: function () {
         return {
             codeStyle: "github",
             styles,
-            code: '<span style="color:red;font-size:36px;">A</span> \n```' + code + '\n```',
-            xssOptions:{
+            code: '<span style="color:red;font-size:36px;">A</span> \n```' + code + "\n```",
+            xssOptions: {
                 whiteList: {
-                    span: ['style']
-                }
-            }
+                    span: ["style"],
+                },
+            },
         };
-    }
-}
+    },
+};
 </script>
 <style>
 .container {

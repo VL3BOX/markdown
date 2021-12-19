@@ -31,30 +31,24 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@jx3box'
-      # - run: npm ci
+      - run: npm run build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
 
-  #     - name: Install && Build
-  #       run: |
-  #         npm install
-  #         npm run article
-
-      # - name: OSS
-      #   uses: manyuanrong/setup-ossutil@v2.0
-      #   with:
-      #     endpoint: "oss-cn-hangzhou.aliyuncs.com"
-      #     access-key-id: ${{secrets.AccessKey_ID}}
-      #     access-key-secret: ${{secrets.Access_Key_Secret}}
-      # - run: ossutil cp -rf dist oss://jx3box/static/jx3box-editor
-      # - run: ossutil cp -rf dist oss://jx3box-www/jx3box-editor
+      - name: OSS&CDN
+        uses: manyuanrong/setup-ossutil@v2.0
+        with:
+          endpoint: "oss-cn-hangzhou.aliyuncs.com"
+          access-key-id: ${{secrets.AccessKey_ID}}
+          access-key-secret: ${{secrets.Access_Key_Secret}}
+      - run: ossutil cp -rf resources oss://jx3box/static/markdown
 
