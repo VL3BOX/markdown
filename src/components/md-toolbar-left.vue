@@ -53,9 +53,7 @@
             :title="`${d_words.tl_link} (ctrl+l)`"
         ></button>
 
-
         <span class="op-icon-divider"></span>
-
 
         <!-- 粗体 -->
         <button :disabled="!editable" type="button" v-if="toolbars.bold" @click="$clicks('bold')" class="op-icon fa fa-mavon-bold" aria-hidden="true" :title="`${d_words.tl_bold} (ctrl+b)`"></button>
@@ -120,9 +118,7 @@
             :title="`${d_words.tl_subscript} (ctrl+shift+s)`"
         ></button>
 
-
         <span class="op-icon-divider"></span>
-
 
         <!-- 左对齐 -->
         <button
@@ -188,11 +184,9 @@
             aria-hidden="true"
             :title="`${d_words.tl_code} (ctrl+alt+c)`"
         ></button>
-        
 
         <span class="op-icon-divider"></span>
 
-        
         <!-- 上传图片 -->
         <div
             :disabled="!editable"
@@ -236,15 +230,26 @@
                     <div class="link-addr input-wrapper">
                         <input type="text" v-model="link_addr" :placeholder="link_type == 'link' ? d_words.tl_popup_link_addr : d_words.tl_popup_img_link_addr" />
                     </div>
-                    <div class="op-btn cancel" @click.stop="s_img_link_open = false">
-                        {{ d_words.tl_popup_link_cancel }}
-                    </div>
-                    <div class="op-btn sure" @click.stop="$imgLinkAdd()">
-                        {{ d_words.tl_popup_link_sure }}
+                    <div class="add-image-buttons">
+                        <div class="u-op-btn cancel" @click.stop="s_img_link_open = false">
+                            {{ d_words.tl_popup_link_cancel }}
+                        </div>
+                        <div class="u-op-btn sure" @click.stop="$imgLinkAdd()">
+                            {{ d_words.tl_popup_link_sure }}
+                        </div>
                     </div>
                 </div>
             </div>
         </transition>
+        <!-- 上传文件 -->
+        <button
+            type="button"
+            v-if="toolbars.file"
+            @click="$clicks('file')"
+            class="op-icon fa fa-mavon-code"
+            aria-hidden="true"
+            :title="`${d_words.tl_file}`"
+        ></button>
 
         <!-- 撤销 -->
         <button type="button" v-if="toolbars.undo" @click="$clicks('undo')" class="op-icon fa fa-mavon-undo" aria-hidden="true" :title="`${d_words.tl_undo} (ctrl+z)`"></button>
@@ -254,10 +259,8 @@
         <button type="button" v-if="toolbars.trash" @click="$clicks('trash')" class="op-icon fa fa-mavon-trash-o" aria-hidden="true" :title="`${d_words.tl_trash} (ctrl+breakspace)`"></button>
         <!-- 保存 -->
         <button type="button" v-if="toolbars.save" @click="$clicks('save')" class="op-icon fa fa-mavon-floppy-o" aria-hidden="true" :title="`${d_words.tl_save} (ctrl+s)`"></button>
-        
-        
-        <slot name="left-toolbar-after" />
 
+        <slot name="left-toolbar-after" />
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -700,6 +703,32 @@ export default {
 
             &:hover {
                 color: #000;
+            }
+        }
+    }
+
+    .add-image-buttons{
+        text-align:center;
+        white-space:normal;
+        margin-top:20px;
+
+        .u-op-btn{
+            display:inline-block;
+            vertical-align:top;
+            border:1px solid #ddd;
+            border-radius:3px;
+            font-size:14px;
+            line-height:22px;
+            padding:6px 20px;
+            cursor:pointer;
+
+            &.cancel{
+                margin-right:20px;
+            }
+
+            &.sure {
+                background-color #0366d6;
+                color:#fff;
             }
         }
     }

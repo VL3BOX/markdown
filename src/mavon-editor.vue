@@ -175,7 +175,7 @@ export default {
         autofocus: {
             // 是否自动获取焦点
             type: Boolean,
-            default: true,
+            default: false,
         },
         fontSize: {
             // 字体大小

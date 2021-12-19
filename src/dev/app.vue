@@ -41,16 +41,11 @@
                 :editable="true"
                 :navigation="false"
 
-                placeholder="write your story.."
-                :autofocus="false"
-                :xssOptions="options.xss"
-                :toolbars="options.toolbars"
-                :imageFilter="image_filter"
                 @change="change"
+
+                :imageFilter="image_filter"
                 @imgAdd="$imgAdd"
-                @imgDel="$imgDel"
-                @subfieldtoggle="$subfieldtoggle"
-                @previewtoggle="$previewtoggle"
+                
                 class="item-editor"
             >
                 <!-- <template slot="left-toolbar-before">
@@ -67,7 +62,7 @@
                     右工具栏后
                 </template> -->
             </mavon-editor>
-            <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left" aria-hidden="true" title="自定义"></button>
+            <!-- <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left" aria-hidden="true" title="自定义"></button> -->
         </div>
         <!--自定义-->
         <div v-if="screen_phone" class="item">
