@@ -1,13 +1,13 @@
 {
   "name": "@jx3box/markdown",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --progress --config webpack/webpack.dev.js",
-    "ci-build": "webpack --progress --config webpack/webpack.build.js",
-    "build": "run-s lint test ci-build",
+    "build": "webpack --progress --config webpack/webpack.build.js",
+    "x-build": "run-s lint test ci-build",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint --ext .js,.vue src/",
