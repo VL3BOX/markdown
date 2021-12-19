@@ -515,7 +515,7 @@ export default {
                     $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, "");
 
                     $vm.insertText($vm.getTextareaDom(), {
-                        prefix: "![" + $file._name + "](" + pos + ")",
+                        prefix: "![" + $file._name + "](" + $file._name + ")",
                         subfix: "",
                         str: "",
                     });

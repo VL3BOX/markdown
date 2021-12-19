@@ -58,7 +58,7 @@ export const CONFIG = {
         'ol': true,
         'ul': true,
         'link': true,
-        'imagelink': true,
+        'imagelink': false,
         'code': true,
         'table': true,
         'undo': false,
