@@ -250,7 +250,7 @@ export default {
             alert('save two')
         },
         change (val, render) {
-            let nav = this.$refs.md
+            console.log(this.$refs.md)
         },
         opchange (event) {
             this.d_language = event.target.value;

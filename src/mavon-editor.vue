@@ -363,9 +363,6 @@ export default {
             textarea_selectionEnd: 0,
             textarea_selectionEnds: [0],
             _xssHandler: null,
-
-            // 导航内容
-            navigation_render : ''
         };
     },
     created() {

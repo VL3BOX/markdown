@@ -357,10 +357,6 @@ export const getNavigation = ($vm , full) => {
     navigationContent = $vm.$refs.navigationContent
     navigationContent.innerHTML = $vm.d_render
 
-    
-    $vm.navigation_render = $vm.d_render
-
-
     let nodes = navigationContent.children
     if (nodes.length) {
         for (let i = 0; i < nodes.length; i++) {
