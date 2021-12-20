@@ -69,12 +69,12 @@ export const CONFIG = {
         'aligncenter': true,
         'alignright': true,
         'navigation': false,
-        'subfield': true,
         'fullscreen': true,
         'readmodel': false,
         'htmlcode': true,
         'help': true,
         'preview': false,
+        'subfield': true,
         // "file":true,
     }
 };
