@@ -137,7 +137,7 @@ import md_toolbar_left from "./components/md-toolbar-left.vue";
 import md_toolbar_right from "./components/md-toolbar-right.vue";
 import "./lib/font/css/fontello.css";
 import "./lib/css/md.css";
-import './lib/css/github-markdown.min.css'
+import "./lib/css/github-markdown.min.css";
 
 // jx3box cdn
 import { __staticPath } from "@jx3box/jx3box-common/data/jx3box.json";
@@ -761,11 +761,8 @@ export default {
     },
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-@import "lib/css/scroll.styl"
-@import "lib/css/mavon-editor.styl"
-</style>
-<style lang="css" scoped>
+<style lang="less">
+@import "lib/css/mavon-editor.css";
 .auto-textarea-wrapper {
     height: 100%;
 }

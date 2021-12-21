@@ -75,8 +75,7 @@ export default {
             }
         },
     },
-    created() {
-    },
+    created() {},
     mounted() {
         // 图片预览事件监听
         ImagePreviewListener(this);
@@ -91,7 +90,6 @@ export default {
     },
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-@import "lib/css/scroll.styl"
-@import "lib/css/mavon-editor.styl"
+<style lang="less">
+@import "lib/css/mavon-editor.css";
 </style>
