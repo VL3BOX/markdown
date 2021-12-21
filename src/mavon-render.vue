@@ -52,7 +52,7 @@ import {
     insertCodeBlock,
     loadLink,
     loadScript,
-    ImagePreviewListener,
+    ImagePreviewListener
 } from "./lib/core/extra-function.js";
 import { stopEvent } from "./lib/util.js";
 import { toolbar_left_click, toolbar_left_addlink } from "./lib/toolbar_left_click.js";
@@ -73,144 +73,144 @@ export default {
     props: {
         readOnly: {
             type: Boolean,
-            default: true,
+            default: true
         },
         scrollStyle: {
             // 是否渲染滚动条样式(webkit)
             type: Boolean,
-            default: true,
+            default: true
         },
         boxShadow: {
             // 是否添加阴影
             type: Boolean,
-            default: true,
+            default: true
         },
         transition: {
             // 是否开启动画过渡
             type: Boolean,
-            default: true,
+            default: true
         },
         autofocus: {
             // 是否自动获取焦点
             type: Boolean,
-            default: false,
+            default: false
         },
         fontSize: {
             // 字体大小
             type: String,
-            default: "14px",
+            default: "14px"
         },
         toolbarsBackground: {
             // 工具栏背景色
             type: String,
-            default: "#ffffff",
+            default: "#ffffff"
         },
         editorBackground: {
             // 编辑栏背景色
             type: String,
-            default: "#ffffff",
+            default: "#ffffff"
         },
         previewBackground: {
             // 预览栏背景色
             type: String,
-            default: "#fbfbfb",
+            default: "#fbfbfb"
         },
         boxShadowStyle: {
             // 阴影样式
             type: String,
-            default: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
+            default: "0 2px 12px 0 rgba(0, 0, 0, 0.1)"
         },
         help: {
             type: String,
-            default: null,
+            default: null
         },
         value: {
             // 初始 value
             type: String,
-            default: "",
+            default: ""
         },
         language: {
             // 初始语言
             type: String,
-            default: "zh-CN",
+            default: "zh-CN"
         },
         subfield: {
             type: Boolean,
-            default: true,
+            default: true
         },
         navigation: {
             type: Boolean,
-            default: false,
+            default: false
         },
         defaultOpen: {
             type: String,
-            default: null,
+            default: null
         },
         editable: {
             // 是否开启编辑
             type: Boolean,
-            default: true,
+            default: true
         },
         toolbarsFlag: {
             // 是否开启工具栏
             type: Boolean,
-            default: true,
+            default: true
         },
         toolbars: {
             // 工具栏
             type: Object,
             default() {
                 return CONFIG.toolbars;
-            },
+            }
         },
         html: {
             // Enable HTML tags in source
             type: Boolean,
-            default: true,
+            default: true
         },
         xssOptions: {
             // XSS 选项
             type: [Object, Boolean],
             default() {
                 return {};
-            },
+            }
         },
         codeStyle: {
             // <code></code> 样式
             type: String,
             default() {
                 return "github";
-            },
+            }
         },
         placeholder: {
             // 编辑器默认内容
             type: String,
-            default: null,
+            default: null
         },
         ishljs: {
             type: Boolean,
-            default: true,
+            default: true
         },
         externalLink: {
             type: [Object, Boolean],
-            default: true,
+            default: true
         },
         imageFilter: {
             type: Function,
-            default: null,
+            default: null
         },
         imageClick: {
             type: Function,
-            default: null,
+            default: null
         },
         tabSize: {
             type: Number,
-            default: 0,
+            default: 0
         },
         shortCut: {
             type: Boolean,
-            default: true,
-        },
+            default: true
+        }
     },
     data() {
         return {
@@ -235,7 +235,7 @@ export default {
                 if (!default_open_) {
                     default_open_ = this.subfield ? "preview" : "edit";
                 }
-                return default_open_ === "preview" ? true : false;
+                return default_open_ === "preview";
             })(), // props true 展示编辑 false展示预览
             s_fullScreen: false, // 全屏编辑标志
             s_help: false, // markdown帮助
@@ -275,12 +275,12 @@ export default {
                 },
                 katex_css: function () {
                     return `${_cdnRoot}katex/katex.min.css`;
-                },
+                }
             },
             p_external_link: {},
             textarea_selectionEnd: 0,
             textarea_selectionEnds: [0],
-            _xssHandler: null,
+            _xssHandler: null
         };
     },
     created() {
@@ -346,7 +346,7 @@ export default {
             }
             var _obj = {
                 css: loadLink,
-                js: loadScript,
+                js: loadScript
             };
             if (_obj.hasOwnProperty(type)) {
                 _obj[type](this.p_external_link[name](), callback);
@@ -370,113 +370,6 @@ export default {
         },
         textAreaFocus() {
             this.$refs.vNoteTextarea.$refs.vTextarea.focus();
-        },
-        $drag($e) {
-            var dataTransfer = $e.dataTransfer;
-            if (dataTransfer) {
-                var files = dataTransfer.files;
-                if (files.length > 0) {
-                    $e.preventDefault();
-                    this.$refs.toolbar_left.$imgFilesAdd(files);
-                }
-            }
-        },
-        $paste($e) {
-            var clipboardData = $e.clipboardData;
-            if (clipboardData) {
-                var items = clipboardData.items;
-                if (!items) return;
-                var types = clipboardData.types || [];
-                var item = null;
-                for (var i = 0; i < types.length; i++) {
-                    if (types[i] === "Files") {
-                        item = items[i];
-                        break;
-                    }
-                }
-                if (item && item.kind === "file") {
-                    // prevent filename being pasted parallel along
-                    // with the image pasting process
-                    stopEvent($e);
-                    var oFile = item.getAsFile();
-                    this.$refs.toolbar_left.$imgFilesAdd([oFile]);
-                }
-            }
-        },
-        $imgTouch(file) {
-            var $vm = this;
-            // TODO 跳转到图片位置
-        },
-        $imgDel(file) {
-            this.markdownIt.image_del(file[1]);
-            // 删除所有markdown中的图片
-            let fileReg = file[0];
-            let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(${fileReg}\\)`, "g");
-
-            this.d_value = this.d_value.replace(reg, "");
-            this.iRender();
-            this.$emit("imgDel", file);
-        },
-        $imgAdd(pos, $file, isinsert) {
-            if (isinsert === undefined) isinsert = true;
-            var $vm = this;
-            if (this.__rFilter == null) {
-                // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
-                this.__rFilter = /^image\//i;
-            }
-            this.__oFReader = new FileReader();
-            this.__oFReader.onload = function (oFREvent) {
-                $vm.markdownIt.image_add(pos, oFREvent.target.result);
-                $file.miniurl = oFREvent.target.result;
-                if (isinsert === true) {
-                    // 去除特殊字符
-                    $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, "");
-
-                    $vm.insertText($vm.getTextareaDom(), {
-                        prefix: "![" + $file._name + "](" + $file._name + ")",
-                        subfix: "",
-                        str: "",
-                    });
-                    $vm.$nextTick(function () {
-                        $vm.$emit("imgAdd", pos, $file);
-                    });
-                }
-            };
-            if ($file) {
-                var oFile = $file;
-                if (this.__rFilter.test(oFile.type)) {
-                    this.__oFReader.readAsDataURL(oFile);
-                }
-            }
-        },
-        $imgUpdateByUrl(pos, url) {
-            var $vm = this;
-            this.markdownIt.image_add(pos, url);
-            this.$nextTick(function () {
-                $vm.d_render = this.markdownIt.render(this.d_value);
-            });
-        },
-        $imgAddByUrl(pos, url) {
-            if (this.$refs.toolbar_left.$imgAddByUrl(pos, url)) {
-                this.$imgUpdateByUrl(pos, url);
-                return true;
-            }
-            return false;
-        },
-        $img2Url(fileIndex, url) {
-            // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
-            var reg_str = "/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(" + fileIndex + "\)\\s*\\)/g";
-            var reg = eval(reg_str);
-            this.d_value = this.d_value.replace(reg, "$1(" + url + ")");
-            this.$refs.toolbar_left.$changeUrl(fileIndex, url);
-            this.iRender();
-        },
-        $imglst2Url(imglst) {
-            if (imglst instanceof Array) {
-                for (var i = 0; i < imglst.length; i++) {
-                    this.$img2Url(imglst[i][0], imglst[i][1]);
-                }
-            }
         },
         toolbar_left_click(_type) {
             toolbar_left_click(_type, this);
@@ -537,10 +430,6 @@ export default {
             }
         },
         // ---------------------------------------
-        // 滚动条联动
-        $v_edit_scroll($event) {
-            scrollLink($event, this);
-        },
         // 获取textarea dom节点
         getTextareaDom() {
             return this.$refs.vNoteTextarea.$refs.vTextarea;
@@ -637,12 +526,7 @@ export default {
                     $vm.saveHistory();
                 }, 500);
             });
-        },
-        // 清空上一步 下一步缓存
-        $emptyHistory() {
-            this.d_history = [this.d_value]; // 编辑记录
-            this.d_history_index = 0; // 编辑记录索引
-        },
+        }
     },
     watch: {
         d_value: function (val, oldVal) {
@@ -675,18 +559,18 @@ export default {
             if (!default_open_) {
                 default_open_ = this.subfield ? "preview" : "edit";
             }
-            this.s_preview_switch = default_open_ === "preview" ? true : false;
+            this.s_preview_switch = default_open_ === "preview";
             return this.s_preview_switch;
         },
         codeStyle: function (val) {
             this.codeStyleChange(val);
-        },
+        }
     },
     components: {
         "v-autoTextarea": autoTextarea,
         "v-md-toolbar-left": md_toolbar_left,
-        "v-md-toolbar-right": md_toolbar_right,
-    },
+        "v-md-toolbar-right": md_toolbar_right
+    }
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
