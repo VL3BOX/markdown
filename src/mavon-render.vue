@@ -1,74 +1,8 @@
 <template>
     <div class="markdown-container">
-        <!-- <div class="v-note-read-model scroll-style markdown-body" v-show="readOnly">
-            <div ref="vNoteReadContent" class="v-note-read-content" v-html="d_render"></div>
-        </div> -->
         <div :class="[{ fullscreen: s_fullScreen }]" class="v-note-wrapper markdown-body">
-            <!--工具栏-->
-            <div class="v-note-op" v-show="toolbarsFlag" :style="{ background: toolbarsBackground }">
-                <v-md-toolbar-left
-                    ref="toolbar_left"
-                    :editable="editable"
-                    :transition="transition"
-                    :d_words="d_words"
-                    @toolbar_left_click="toolbar_left_click"
-                    @toolbar_left_addlink="toolbar_left_addlink"
-                    :toolbars="toolbars"
-                    @imgAdd="$imgAdd"
-                    @imgDel="$imgDel"
-                    @imgTouch="$imgTouch"
-                    :image_filter="imageFilter"
-                    :class="{ transition: transition }"
-                >
-                    <slot name="left-toolbar-before" slot="left-toolbar-before" />
-                    <slot name="left-toolbar-after" slot="left-toolbar-after" />
-                </v-md-toolbar-left>
-                <v-md-toolbar-right
-                    ref="toolbar_right"
-                    :d_words="d_words"
-                    @toolbar_right_click="toolbar_right_click"
-                    :toolbars="toolbars"
-                    :s_subfield="s_subfield"
-                    :s_preview_switch="s_preview_switch"
-                    :s_fullScreen="s_fullScreen"
-                    :s_html_code="s_html_code"
-                    :s_navigation="s_navigation"
-                    :class="{ transition: transition }"
-                >
-                    <slot name="right-toolbar-before" slot="right-toolbar-before" />
-                    <slot name="right-toolbar-after" slot="right-toolbar-after" />
-                </v-md-toolbar-right>
-            </div>
             <!--编辑展示区域-->
             <div class="v-note-panel">
-                <!--编辑区-->
-                <div
-                    ref="vNoteEdit"
-                    @scroll="$v_edit_scroll"
-                    class="v-note-edit divarea-wrapper"
-                    :class="{
-                        'scroll-style': s_scrollStyle,
-                        'scroll-style-border-radius': s_scrollStyle && !s_preview_switch && !s_html_code,
-                        'single-edit': !s_preview_switch && !s_html_code,
-                        'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code),
-                        transition: transition,
-                    }"
-                    @click="textAreaFocus"
-                >
-                    <div class="content-input-wrapper" :style="{ 'background-color': editorBackground }">
-                        <!-- 双栏 -->
-                        <v-autoTextarea
-                            ref="vNoteTextarea"
-                            :placeholder="placeholder ? placeholder : d_words.start_editor"
-                            class="content-input"
-                            :fontSize="fontSize"
-                            lineHeight="1.5"
-                            v-model="d_value"
-                            fullHeight
-                            :style="{ 'background-color': editorBackground }"
-                        ></v-autoTextarea>
-                    </div>
-                </div>
                 <!--展示区-->
                 <div :class="{ 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code) }" v-show="s_preview_switch || s_html_code" class="v-note-show">
                     <div
@@ -87,38 +21,13 @@
                         {{ d_render }}
                     </div>
                 </div>
-
-                <!--标题导航-->
-                <transition name="slideTop">
-                    <div v-show="s_navigation" class="v-note-navigation-wrapper" :class="{ transition: transition }">
-                        <div class="v-note-navigation-title">
-                            {{ d_words.navigation_title }}<i @click="toolbar_right_click('navigation')" class="fa fa-mavon-times v-note-navigation-close" aria-hidden="true"></i>
-                        </div>
-                        <div ref="navigationContent" class="v-note-navigation-content" :class="{ 'scroll-style': s_scrollStyle }"></div>
-                    </div>
-                </transition>
             </div>
-            <!--帮助文档-->
-            <transition name="fade">
-                <div ref="help">
-                    <div @click.self="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
-                        <div class="v-note-help-content markdown-body" :class="{ shadow: boxShadow }">
-                            <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times" aria-hidden="true"></i>
-                            <div class="scroll-style v-note-help-show" v-html="d_help"></div>
-                        </div>
-                    </div>
-                </div>
-            </transition>
             <!-- 预览图片 -->
             <transition name="fade">
                 <div @click="d_preview_imgsrc = null" class="v-note-img-wrapper" v-if="d_preview_imgsrc">
                     <img :src="d_preview_imgsrc" alt="none" />
                 </div>
             </transition>
-            <!--阅读模式-->
-            <!-- <div :class="{ show: s_readmodel }" class="v-note-read-model scroll-style" ref="vReadModel">
-                <div ref="vNoteReadContent" class="v-note-read-content" v-html="d_render"></div>
-            </div> -->
         </div>
     </div>
 </template>
