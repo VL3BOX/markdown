@@ -5,7 +5,7 @@
             <span @click="viewIndex = 2">Markdown编辑器</span>
         </div>
         <div>
-            <!-- <App v-if="viewIndex == 1"></App> -->
+            <App v-if="viewIndex == 1"></App>
             <Editor v-if="viewIndex == 2" ></Editor>
         </div>
     </div>
@@ -18,7 +18,7 @@ import editor from "./editor.vue";
 export default {
     name: "demo",
     components: {
-        // App: app,
+        App: app,
         Editor: editor,
     },
     data() {

@@ -84,16 +84,6 @@
                         {{ d_render }}
                     </div>
                 </div>
-
-                <!--标题导航-->
-                <transition name="slideTop">
-                    <div v-show="s_navigation" class="v-note-navigation-wrapper" :class="{ transition: transition }">
-                        <div class="v-note-navigation-title">
-                            {{ d_words.navigation_title }}<i @click="toolbar_right_click('navigation')" class="fa fa-mavon-times v-note-navigation-close" aria-hidden="true"></i>
-                        </div>
-                        <div ref="navigationContent" class="v-note-navigation-content" :class="{ 'scroll-style': s_scrollStyle }"></div>
-                    </div>
-                </transition>
             </div>
             <!--帮助文档-->
             <transition name="fade">
@@ -126,7 +116,7 @@ import {
     /* windowResize, */
     scrollLink,
     insertTextAtCaret,
-    getNavigation,
+    // getNavigation,
     insertTab,
     unInsertTab,
     insertOl,
@@ -147,6 +137,7 @@ import md_toolbar_left from "./components/md-toolbar-left.vue";
 import md_toolbar_right from "./components/md-toolbar-right.vue";
 import "./lib/font/css/fontello.css";
 import "./lib/css/md.css";
+import './lib/css/github-markdown.min.css'
 
 // jx3box cdn
 import { __staticPath } from "@jx3box/jx3box-common/data/jx3box.json";
@@ -339,9 +330,6 @@ export default {
             d_image_file: [],
             d_preview_imgsrc: null, // 图片预览地址
             s_external_link: {
-                markdown_css: function () {
-                    return `${_cdnRoot}markdown/github-markdown.min.css`;
-                },
                 hljs_js: function () {
                     return `${_cdnRoot}highlight.js-11.3.1/highlight.min.js`;
                 },
@@ -571,9 +559,9 @@ export default {
         toolbar_right_click(_type) {
             toolbar_right_click(_type, this);
         },
-        getNavigation($vm, full) {
-            return getNavigation($vm, full);
-        },
+        // getNavigation($vm, full) {
+        //     return getNavigation($vm, full);
+        // },
         // @event
         // 修改数据触发 （val ， val_render）
         change(val, render) {
@@ -616,9 +604,9 @@ export default {
             if (this.readmodel) {
                 this.readmodel(this.s_readmodel, this.d_value);
             }
-            if (this.s_readmodel && this.toolbars.navigation) {
-                this.getNavigation(this, true);
-            }
+            // if (this.s_readmodel && this.toolbars.navigation) {
+            //     this.getNavigation(this, true);
+            // }
         },
         // ---------------------------------------
         // 滚动条联动
@@ -711,7 +699,7 @@ export default {
                     if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
                 }
                 // 改变标题导航
-                getNavigation($vm, false);
+                // getNavigation($vm, false);
                 // v-model 语法糖
                 $vm.$emit("input", $vm.d_value);
                 // 塞入编辑记录数组
