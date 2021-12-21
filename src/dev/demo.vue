@@ -23,7 +23,7 @@ export default {
     },
     data() {
         return {
-            viewIndex: 1,
+            viewIndex: 2,
         };
     },
 };

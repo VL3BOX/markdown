@@ -61,7 +61,7 @@ export default {
             var $vm = this;
             this.$render($vm.d_value, function (res) {
                 $vm.d_render = res;
-                $vm.$emit("change", val, render);
+                $vm.$emit("change", $vm.d_value, $vm.d_render);
             });
         },
     },
@@ -90,6 +90,3 @@ export default {
     },
 };
 </script>
-<style lang="less">
-@import "lib/css/mavon-editor.css";
-</style>

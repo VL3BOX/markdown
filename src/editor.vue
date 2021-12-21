@@ -86,7 +86,7 @@
                 </div>
             </div>
             <!--帮助文档-->
-            <transition name="fade">
+            <!-- <transition name="fade">
                 <div ref="help">
                     <div @click.self="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
                         <div class="v-note-help-content markdown-body" :class="{ shadow: boxShadow }">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-            </transition>
+            </transition> -->
             <!-- 预览图片 -->
             <transition name="fade">
                 <div @click="d_preview_imgsrc = null" class="v-note-img-wrapper" v-if="d_preview_imgsrc">
@@ -108,7 +108,7 @@
 
 <script>
 // import tomarkdown from './lib/core/to-markdown.js'
-import { autoTextarea } from "auto-textarea";
+import autoTextarea from "./components/md-textarea.vue";
 import { keydownListen } from "./lib/core/keydown-listen.js";
 import hljsCss from "./lib/core/hljs/lang.hljs.css.js";
 import {
@@ -386,8 +386,8 @@ export default {
         fullscreenchange(this);
         this.d_value = this.value || "";
         // 将help添加到末尾
-        document.body.appendChild(this.$refs.help);
-        this.loadExternalLink("markdown_css", "css");
+        // document.body.appendChild(this.$refs.help);
+        // this.loadExternalLink("markdown_css", "css");
         this.loadExternalLink("katex_css", "css");
         this.loadExternalLink("katex_js", "js", function () {
             $vm.iRender(true);
@@ -399,7 +399,7 @@ export default {
         $vm.codeStyleChange($vm.codeStyle, true);
     },
     beforeDestroy() {
-        document.body.removeChild(this.$refs.help);
+        // document.body.removeChild(this.$refs.help);
     },
     getMarkdownIt() {
         let mdIt = this.mixins[0].data().markdownIt;
@@ -657,9 +657,9 @@ export default {
         initLanguage() {
             let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : "zh-CN";
             var $vm = this;
-            $vm.$render(CONFIG[`help_${lang}`], function (res) {
-                $vm.d_help = res;
-            });
+            // $vm.$render(CONFIG[`help_${lang}`], function (res) {
+            //     $vm.d_help = res;
+            // });
             this.d_words = CONFIG[`words_${lang}`];
         },
         // 编辑开关
@@ -763,7 +763,5 @@ export default {
 </script>
 <style lang="less">
 @import "lib/css/mavon-editor.css";
-.auto-textarea-wrapper {
-    height: 100%;
-}
+@import "lib/css/toolbar.css";
 </style>

@@ -74,15 +74,15 @@
         <button type="button" v-if="toolbars.htmlcode" @click="$clicks('html')" v-show="!s_html_code" class="op-icon fa fa-mavon-code" :title="d_words.tl_html_on" aria-hidden="true"></button>
         <button type="button" v-if="toolbars.htmlcode" @click="$clicks('html')" v-show="s_html_code" class="op-icon fa fa-mavon-code selected" :title="d_words.tl_html_off" aria-hidden="true"></button>
         <!-- 帮助 -->
-        <button
+        <!-- <button
             type="button"
             v-if="toolbars.help"
             @click="$clicks('help')"
-            class="op-icon fa fa-mavon-question-circle"
             style="font-size: 17px; padding: 5px 6px 5px 3px"
             :title="d_words.tl_help"
             aria-hidden="true"
-        ></button>
+        ></button> -->
+        <a href="/tool/35605" target="_blank" class="op-icon fa fa-mavon-question-circle" title="帮助"> </a>
         <slot name="right-toolbar-after" />
     </div>
 </template>

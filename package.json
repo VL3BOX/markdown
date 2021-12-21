@@ -1,6 +1,6 @@
 {
     "name": "@jx3box/markdown",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Vue markdown editor",
     "main": "src/editor.js",
     "types": "./mavon-editor.d.ts",
@@ -40,7 +40,6 @@
         "highlight.js": "^11.3.1",
         "xss": "^1.0.6",
         "github-markdown-css": "^2.6.0",
-        "auto-textarea": "^1.4.0",
         "markdown-it": "^10.0.0",
         "markdown-it-abbr": "^1.0.4",
         "markdown-it-container": "^3.0.0",
