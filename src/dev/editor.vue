@@ -34,7 +34,7 @@
                     </select>
                 </div>
             </div>
-            <mavon-editor ref="md" v-model="help1" :editable="true" :navigation="false" @change="change" :imageFilter="image_filter" @imgAdd="$imgAdd" class="item-editor">
+            <editor style="height:800px;" ref="md" v-model="help1" :editable="true" :navigation="false" @change="change" :imageFilter="image_filter" @imgAdd="$imgAdd" class="item-editor">
                 <!-- <template slot="left-toolbar-before">
                     左工具栏前
                 </template> -->
@@ -46,23 +46,8 @@
                 <!-- <template slot="right-toolbar-after">
                     右工具栏后
                 </template> -->
-            </mavon-editor>
+            </editor>
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left" aria-hidden="true" title="自定义"></button>
-        </div>
-        <!--自定义-->
-        <div v-if="screen_phone" class="item">
-            <h2 class="item-header">
-                {{ d_words.customize_setting }}
-            </h2>
-            <mavon-editor :language="d_language" @save="savetwo" :toolbars="toolbars" class="item-editor" v-model="help2"></mavon-editor>
-        </div>
-        <div class="item">
-            <span style="display: block; margin: 30px 0 15px 0; color: #1e6bb8" class="">
-                {{ d_words.mark }}
-            </span>
-        </div>
-        <div class="item">
-            <h2 class="item-header">{{ d_words.detail }}<a href="https://github.com/hinesboy/mavonEditor">GitHub</a></h2>
         </div>
     </div>
 </template>
@@ -70,6 +55,7 @@
 <script type="text/ecmascript-6">
 import styles from '../lib/core/hljs/lang.hljs.css.js'
 import {CONFIG} from '../lib/config.js'
+import editor from '../editor.vue'
 export default {
     name: 'app',
     data () {
@@ -195,7 +181,6 @@ export default {
             console.log(val);
         },
         imgreplace($e) {
-            console.log('here');
             this.$refs.md.$imglst2Url([
                 [0, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png'],
                 [1, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png']
@@ -277,6 +262,9 @@ export default {
         d_language: function () {
             this.initLanguage();
         }
+    },
+    components:{
+        editor
     }
 }
 </script>
@@ -297,7 +285,7 @@ body
     box-sizing border-box
     padding 90px 15px
     width 100%
-    height 380px
+    height 300px
     color #fff
     text-align center
     background-color #159957

@@ -7,7 +7,7 @@
  * mavonEditor
  * @author hinesboy
  */
-const mavonEditor = require("./mavon-editor.vue");
+const mavonEditor = require("./editor.vue");
 const VueMavonEditor = {
     /**
      * @deprecated

@@ -1,25 +1,22 @@
 <template>
     <div>
-        <mavon-render ref="md" v-model="data">
-        </mavon-render>
+        <render ref="md" v-model="data"></render>
     </div>
 </template>
 
 <script>
-import mavonRender from '../mavon-render.vue'
-import content from './assets/content_4'
+import render from "../render.vue";
+import content from "./assets/content_4";
 export default {
     components: {
-        mavonRender
+        render,
     },
     data() {
         return {
-            data: content
-        }
-    }
-}
+            data: content,
+        };
+    },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

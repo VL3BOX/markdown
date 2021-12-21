@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="navigate">
-            <span @click="viewIndex = 1">Full demo</span>
-            <span @click="viewIndex = 2">Simple demo</span>
+            <span @click="viewIndex = 1">Markdown渲染</span>
+            <span @click="viewIndex = 2">Markdown编辑器</span>
         </div>
         <div>
-            <App v-if="viewIndex == 1"></App>
-            <Editor v-else-if="viewIndex == 2"></Editor>
+            <!-- <App v-if="viewIndex == 1"></App> -->
+            <Editor v-if="viewIndex == 2" ></Editor>
         </div>
     </div>
 </template>
@@ -18,7 +18,7 @@ import editor from "./editor.vue";
 export default {
     name: "demo",
     components: {
-        App: app,
+        // App: app,
         Editor: editor,
     },
     data() {

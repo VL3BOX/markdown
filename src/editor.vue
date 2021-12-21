@@ -1,8 +1,5 @@
 <template>
     <div class="markdown-container">
-        <!-- <div class="v-note-read-model scroll-style markdown-body" v-show="readOnly">
-            <div ref="vNoteReadContent" class="v-note-read-content" v-html="d_render"></div>
-        </div> -->
         <div :class="[{ fullscreen: s_fullScreen }]" class="v-note-wrapper markdown-body">
             <!--工具栏-->
             <div class="v-note-op" v-show="toolbarsFlag" :style="{ background: toolbarsBackground }">
@@ -115,10 +112,6 @@
                     <img :src="d_preview_imgsrc" alt="none" />
                 </div>
             </transition>
-            <!--阅读模式-->
-            <!-- <div :class="{ show: s_readmodel }" class="v-note-read-model scroll-style" ref="vReadModel">
-                <div ref="vNoteReadContent" class="v-note-read-content" v-html="d_render"></div>
-            </div> -->
         </div>
     </div>
 </template>
