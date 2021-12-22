@@ -1,6 +1,6 @@
 {
     "name": "@jx3box/markdown",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "Vue markdown editor",
     "main": "src/editor.js",
     "types": "./mavon-editor.d.ts",

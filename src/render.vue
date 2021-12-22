@@ -40,6 +40,9 @@ export default {
             type: Boolean,
             default: true,
         },
+        preRender : {
+            type : Function,
+        }
     },
     data() {
         return {
@@ -60,7 +63,11 @@ export default {
         iRender() {
             var $vm = this;
             this.$render($vm.d_value, function (res) {
-                $vm.d_render = res;
+                if(this.preRender){
+                    $vm.d_render = this.preRender(res);
+                }else{
+                    $vm.d_render = res;
+                }
                 $vm.$emit("change", $vm.d_value, $vm.d_render);
             });
         },

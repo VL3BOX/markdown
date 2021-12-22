@@ -141,7 +141,8 @@ import "./lib/css/github-markdown.min.css";
 
 // jx3box cdn
 import { __staticPath } from "@jx3box/jx3box-common/data/jx3box.json";
-const _cdnRoot = __staticPath.mirror + "markdown/";
+// const _cdnRoot = __staticPath.mirror + "markdown/";
+const _cdnRoot = __staticPath.origin + "markdown/";
 
 export default {
     mixins: [markdown],
@@ -694,6 +695,7 @@ export default {
             var $vm = this;
             this.$render($vm.d_value, function (res) {
                 $vm.d_render = res;
+
                 // change回调  toggleChange == false 时候触发change回调
                 if (!toggleChange) {
                     if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
@@ -701,13 +703,13 @@ export default {
                 // 改变标题导航
                 // getNavigation($vm, false);
                 // v-model 语法糖
-                $vm.$emit("input", $vm.d_value);
+                // $vm.$emit("input", $vm.d_value);
                 // 塞入编辑记录数组
-                if ($vm.d_value === $vm.d_history[$vm.d_history_index]) return;
-                window.clearTimeout($vm.currentTimeout);
-                $vm.currentTimeout = setTimeout(() => {
-                    $vm.saveHistory();
-                }, 500);
+                // if ($vm.d_value === $vm.d_history[$vm.d_history_index]) return;
+                // window.clearTimeout($vm.currentTimeout);
+                // $vm.currentTimeout = setTimeout(() => {
+                //     $vm.saveHistory();
+                // }, 500);
             });
         },
         // 清空上一步 下一步缓存
