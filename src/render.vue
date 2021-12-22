@@ -63,8 +63,8 @@ export default {
         iRender() {
             var $vm = this;
             this.$render($vm.d_value, function (res) {
-                if(this.preRender){
-                    $vm.d_render = this.preRender(res);
+                if($vm.preRender){
+                    $vm.d_render = $vm.preRender(res);
                 }else{
                     $vm.d_render = res;
                 }
